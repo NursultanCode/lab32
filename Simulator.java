@@ -39,18 +39,16 @@ public class Simulator {
             }
             Scanner scanner = new Scanner(System.in);
             int n = scanner.nextInt();
-            switch (n){
-                case 0:
-                    askToAddMoney();
-                    break;
-                default:
-                    machine.getCash().buyProduct(machine.getProductsThatCanBuy().get(n-1));
-                    System.out.println("you buy "+machine.getProductsThatCanBuy().get(n-1));
-                    System.out.println("Your change is " + machine.getCash().returnCash());
+            if (n == 0) {
+                askToAddMoney();
+            } else {
+                machine.getCash().buyProduct(machine.getProductsThatCanBuy().get(n - 1));
+                System.out.println("you buy " + machine.getProductsThatCanBuy().get(n - 1));
+                System.out.println("Your change is " + machine.getCash().returnCash());
             }
         }catch (Exception e){
             System.out.println("Wrong input!");
-
+            whichProductYouWant();
         }
     }
 
