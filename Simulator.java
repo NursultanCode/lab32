@@ -37,19 +37,30 @@ public class Simulator {
             for (int i = 1; i <=machine.getProductsThatCanBuy().size(); i++) {
                 System.out.println(i+" - Buy "+machine.getProductsThatCanBuy().get(i-1));
             }
+            System.out.println("9 - Exit");
             Scanner scanner = new Scanner(System.in);
             int n = scanner.nextInt();
             if (n == 0) {
                 askToAddMoney();
-            } else {
+            }
+            else if (n==9){
+                exit();
+            }
+            else {
                 machine.getCash().buyProduct(machine.getProductsThatCanBuy().get(n - 1));
                 System.out.println("you buy " + machine.getProductsThatCanBuy().get(n - 1));
                 System.out.println("Your change is " + machine.getCash().returnCash());
+                machine.setProductsThatCanBuy(machine.getCash().getTotal());
+                whichProductYouWant();
             }
         }catch (Exception e){
             System.out.println("Wrong input!");
             whichProductYouWant();
         }
+    }
+
+    private static void exit() {
+        System.out.println("Good Buy!");
     }
 
     private static void askPayment() {
